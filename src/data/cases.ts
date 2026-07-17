@@ -106,6 +106,27 @@ export const CASES: CorruptionCase[] = [
     implicatedCount: 6
   },
   {
+    id: "campeon",
+    name: "Caso Campeón",
+    year: 1999,
+    period: "Burbuja Inmobiliaria (1996-2007)",
+    description: "Trama de financiación irregular del Partido Popular en Galicia a través de la Xunta de Galicia. Se desviaron subvenciones a fundaciones y empresas afines al partido, incluyendo el Cobelo y la Fundación Cultural San Martiño.",
+    parties: ["PP"],
+    amountEstimated: 6000000,
+    amountDisplay: "6M€",
+    regions: ["Galicia"],
+    status: "Sentenciado",
+    keyFigures: ["Jorge Dorribo Figueira", "José Luis Baltar"],
+    consequences: "Condena por la Audiencia de Lugo. Se probó la existencia de una caja B del PP gallego con fondos públicos de la Xunta.",
+    sources: ["Audiencia de Lugo", "Tribunal Supremo"],
+    corruptionTypes: ["Financiación ilegal", "Malversación", "Prevaricación"],
+    openSources: [
+      { title: "Sentencia de la Audiencia de Lugo", entity: "CENDOJ (Poder Judicial)" },
+      { title: "Informe del Tribunal de Cuentas sobre subvenciones irregulares en Galicia", entity: "Tribunal de Cuentas" }
+    ],
+    implicatedCount: 8
+  },
+  {
     id: "malaya",
     name: "Caso Malaya",
     year: 2006,
@@ -125,6 +146,27 @@ export const CASES: CorruptionCase[] = [
       { title: "Sentencia Caso Malaya", entity: "Tribunal Superior de Justicia de Andalucía" }
     ],
     implicatedCount: 95
+  },
+  {
+    id: "brugal",
+    name: "Caso Brugal",
+    year: 2006,
+    period: "Burbuja Inmobiliaria (1996-2007)",
+    description: "Trama de corrupción en la gestión de residuos sólidos urbanos en Alicante y Orihuela. La empresa Brugal obtenía contratos públicos de forma irregular mediante sobornos a cargos del PP. Involucró la destrucción de pruebas y la existencia de una caja B.",
+    parties: ["PP"],
+    amountEstimated: 35000000,
+    amountDisplay: "35M€",
+    regions: ["Comunidad Valenciana"],
+    status: "Sentenciado",
+    keyFigures: ["Ángel Fenoll", "José Joaquín Ripoll", "Mónica Lorente"],
+    consequences: "Condenas a varios cargos del PP alicantino. Ángel Fenoll, hombre de negocios, condenado por sobornos y cohecho. Destrucción documental probada.",
+    sources: ["Audiencia de Alicante", "Tribunal Supremo"],
+    corruptionTypes: ["Cohecho", "Blanqueo de capitales", "Fraude en contratación pública", "Tráfico de influencias"],
+    openSources: [
+      { title: "Sentencia Audiencia de Alicante - Caso Brugal", entity: "CENDOJ (Poder Judicial)" },
+      { title: "Investigación sobre residuos urbanos en Alicante", entity: "Diario Información" }
+    ],
+    implicatedCount: 14
   },
   {
     id: "gurtel",
@@ -211,10 +253,31 @@ export const CASES: CorruptionCase[] = [
     implicatedCount: 22
   },
   {
+    id: "pretoria",
+    name: "Caso Pretoria",
+    year: 2009,
+    period: "Burbuja Inmobiliaria (1996-2007)",
+    description: "Trama de corrupción urbanística en Santa Coloma de Gramenet (Barcelona). El alcalde Lluís Prenafeta y el arquitecto municipal cobraban comisiones ilegales de promotores inmobiliarios a cambio de modificar planeamiento urbanístico y agilizar licencias.",
+    parties: ["PSC"],
+    amountEstimated: 18000000,
+    amountDisplay: "18M€ (comisiones y sobornos)",
+    regions: ["Cataluña"],
+    status: "Sentenciado",
+    keyFigures: ["Lluís Prenafeta", "Bartomeu Muñoz", "Macià Alavedra"],
+    consequences: "Condena del alcalde Bartomeu Muñoz a 2 años y 9 meses de prisión. Prenafeta, exsecretario de Presidencia de la Generalitat, condenado por cohecho y blanqueo.",
+    sources: ["Audiencia de Barcelona", "Tribunal Supremo"],
+    corruptionTypes: ["Cohecho", "Prevaricación", "Blanqueo de capitales", "Fraude en contratación pública"],
+    openSources: [
+      { title: "Sentencia del Caso Pretoria", entity: "Audiencia de Barcelona" },
+      { title: "Operación Pretoria: detenciones en Santa Coloma", entity: "La Vanguardia" }
+    ],
+    implicatedCount: 20
+  },
+  {
     id: "barcenas",
     name: "Caso Bárcenas / Caja B",
     year: 2013,
-    period: "Burbuja Inmobiliaria (1996-2007)",
+    period: "Crisis y Ajuste (2008-2018)",
     description: "Emanado del Caso Gürtel. Se constató una contabilidad extracontable ('los papeles de Bárcenas') con donaciones clandestinas de empresas adjudicatarias destinadas a sobresueldos a líderes del partido y reforma de sedes.",
     parties: ["PP"],
     amountEstimated: 8400000,
@@ -230,6 +293,27 @@ export const CASES: CorruptionCase[] = [
       { title: "Dictamen sobre la reforma de la sede de Génova", entity: "Audiencia Nacional" }
     ],
     implicatedCount: 10
+  },
+  {
+    id: "invercaria",
+    name: "Caso Invercaria",
+    year: 2011,
+    period: "Crisis y Ajuste (2008-2018)",
+    description: "Desvío de fondos de la sociedad estatal Invercaria (sociedad de capital riesgo de la Junta de Andalucía) mediante créditos participativos irregulares a empresas afines. El expresidente de Invercaria y altos cargos de la Junta adjudicaban fondos sin criterios objetivos.",
+    parties: ["PSOE"],
+    amountEstimated: 25000000,
+    amountDisplay: "25M€",
+    regions: ["Andalucía"],
+    status: "En Juicio",
+    keyFigures: ["Francisco Granados", "Antonio Rivas"],
+    consequences: "Procesamiento de altos cargos de la Junta de Andalucía. Juicio pendiente en la Audiencia Provincial de Sevilla.",
+    sources: ["Audiencia de Sevilla", "Fiscalía Anticorrupción"],
+    corruptionTypes: ["Malversación", "Prevaricación", "Fraude en contratación pública"],
+    openSources: [
+      { title: "Auto de apertura de juicio oral - Caso Invercaria", entity: "Audiencia de Sevilla" },
+      { title: "Informe del Tribunal de Cuentas sobre Invercaria", entity: "Tribunal de Cuentas" }
+    ],
+    implicatedCount: 9
   },
   {
     id: "punica",
@@ -358,6 +442,49 @@ export const CASES: CorruptionCase[] = [
     implicatedCount: 65
   },
   {
+    id: "bankia",
+    name: "Caso Bankia",
+    year: 2012,
+    period: "Crisis y Ajuste (2008-2018)",
+    description: "El mayor rescate bancario de la historia de España. Rodrigo Rato, como presidente de Caja Madrid y Bankia, ocultó pérdidas de miles de millones de euros en balances falsificados para obtener el rescate público de 22.400M€ del Estado. Los accionistas minoristas fueron engañados con información contable fraudulenta.",
+    parties: ["PP"],
+    amountEstimated: 22424000000,
+    amountDisplay: "22.424M€ (rescate público FROB — fuente: FROB/Tribunal de Cuentas)",
+    regions: ["Nacional"],
+    status: "Sentenciado",
+    keyFigures: ["Rodrigo Rato", "Miguel Blesa", "Ildefonso Sánchez Barcoj"],
+    consequences: "Rescate público de 22.424M€ (el mayor de la historia española). Rato condenado a 4 años y 6 meses por apropiación indebida (tarjetas black). El juicio por la salida a bolsa absolvió a los 34 acusados en 2020. El Tribunal de Cuentas cifra el coste total del rescate bancario en 71.833M€.",
+    sources: ["Tribunal Supremo", "Banco de España", "Fiscalía Anticorrupción"],
+    corruptionTypes: ["Malversación", "Apropiación indebida", "Falsedad documental", "Delito fiscal"],
+    openSources: [
+      { title: "Sentencia del Tribunal Supremo sobre Bankia", entity: "Tribunal Supremo" },
+      { title: "Informe del Banco de España sobre la intervención de Bankia", entity: "Banco de España" },
+      { title: "Rescate bancario: coste para el contribuyente", entity: "FROB (Fondo de Reestructuración Ordenada Bancaria)" }
+    ],
+    implicatedCount: 30
+  },
+  {
+    id: "process",
+    name: "Caso Process (Procés)",
+    year: 2017,
+    period: "Crisis y Ajuste (2008-2018)",
+    description: "Investigación sobre el uso de fondos públicos de la Generalitat de Cataluña para financiar la organización del referéndum ilegal del 1-O y la campaña institucional del procés. Incluye el desvío de 28 millones de euros a través de contratos irregulares con fundaciones y entidades afines.",
+    parties: ["PDeCAT", "ERC"],
+    amountEstimated: 4279985,
+    amountDisplay: "~4,3M€ (responsabilidad civil solidaria — Sentencia TS 459/2019)",
+    regions: ["Cataluña"],
+    status: "En Juicio",
+    keyFigures: ["Jordi Turull", "Raül Romeva", "Oriol Junqueras", "Carles Puigdemont"],
+    consequences: "Procesamiento de 12 líderes independentistas por delitos de rebelión, malversación y desobediencia. Sentencia del Tribunal Supremo (2019): penas de 9 a 13 años de prisión. La malversación acreditada superó 'ampliamente' los 250.000€. La responsabilidad civil se fijó en 4.279.985€. Indultos parciales en 2021.",
+    sources: ["Tribunal Supremo", "Audiencia Nacional"],
+    corruptionTypes: ["Malversación", "Desobediencia", "Organización criminal", "Perversion de la justicia"],
+    openSources: [
+      { title: "Sentencia del Tribunal Supremo - Caso del Procés", entity: "Tribunal Supremo" },
+      { title: "Auto de apertura de juicio oral", entity: "Tribunal Supremo - Sala de lo Penal" }
+    ],
+    implicatedCount: 12
+  },
+  {
     id: "mediador",
     name: "Caso Mediador",
     year: 2023,
@@ -418,5 +545,190 @@ export const CASES: CorruptionCase[] = [
       { title: "Investigación fraude tributario", entity: "El Mundo" }
     ],
     implicatedCount: 1
+  },
+  {
+    id: "emarsa",
+    name: "Caso Emarsa",
+    year: 2009,
+    period: "Burbuja Inmobiliaria (1996-2007)",
+    description: "Corrupción en la Empresa Metropolitana de Aguas Residuales de Valencia (Emarsa), empresa pública de la Generalitat Valenciana. Se adjudicaron contratos de construcción de depuradoras a empresas afines con sobrecostes del 60-80%, y se pagaron comisiones a cargos del PP.",
+    parties: ["PP"],
+    amountEstimated: 23500000,
+    amountDisplay: "23,5M€ (sentencia Audiencia de Valencia — fuente: Levante-EMV/El País)",
+    regions: ["Comunidad Valenciana"],
+    status: "Sentenciado",
+    keyFigures: ["Enrique Crespo", "Vicente Casanova"],
+    consequences: "Condenas por cohecho y malversación a directivos de Emarsa y cargos del PP valenciano. 24 acusados con penas que suman 97 años. La empresa fue intervenida, liquidada y el servicio privatizado.",
+    sources: ["Audiencia de Valencia", "Tribunal Supremo"],
+    corruptionTypes: ["Cohecho", "Malversación", "Fraude en contratación pública", "Prevaricación"],
+    openSources: [
+      { title: "Sentencia Audiencia de Valencia - Caso Emarsa", entity: "CENDOJ (Poder Judicial)" },
+      { title: "Liquidación de Emarsa por la Generalitat Valenciana", entity: "Diario El Mundo" }
+    ],
+    implicatedCount: 18
+  },
+  {
+    id: "fabra",
+    name: "Caso Fabra",
+    year: 2001,
+    period: "Burbuja Inmobiliaria (1996-2007)",
+    description: "El expresidente de la Diputación de Castellón Carlos Fabra fue condenado por cuatro delitos de fraude fiscal al no declarar más de 1,3 millones de euros de ingresos entre 1999 y 2002. Se investigó también su posible relación con tramas de corrupción urbanística en la provincia.",
+    parties: ["PP"],
+    amountEstimated: 1300000,
+    amountDisplay: "1.3M€ (fraude fiscal condenado)",
+    regions: ["Comunidad Valenciana"],
+    status: "Sentenciado",
+    keyFigures: ["Carlos Fabra"],
+    consequences: "Condena a 4 años de prisión por fraude fiscal (2010). Ingresó en prisión en 2013. Símbolo de la corrupción en Castellón.",
+    sources: ["Tribunal Supremo", "Audiencia de Castellón"],
+    corruptionTypes: ["Delito fiscal", "Falsedad documental"],
+    openSources: [
+      { title: "Sentencia del Tribunal Supremo - Caso Fabra", entity: "Tribunal Supremo" },
+      { title: "Ingres en presó de Carlos Fabra", entity: "Las Provincias" }
+    ],
+    implicatedCount: 1
+  },
+  {
+    id: "pokemon",
+    name: "Caso Pokémon",
+    year: 2005,
+    period: "Burbuja Inmobiliaria (1996-2007)",
+    description: "Trama de corrupción en la Diputación de Lugo. Se desviaron fondos públicos a través de contratos irregulares de publicidad y patrocinio a medios de comunicación afines, y se financió irregularmente al PP gallego con dinero de la diputación.",
+    parties: ["PP"],
+    amountEstimated: 3000000,
+    amountDisplay: "3M€",
+    regions: ["Galicia"],
+    status: "Sentenciado",
+    keyFigures: ["José Ramón Gómez Besteiro"],
+    consequences: "Condena por prevaricación y malversación a varios cargos de la Diputación de Lugo.",
+    sources: ["Audiencia de Lugo"],
+    corruptionTypes: ["Malversación", "Prevaricación", "Financiación ilegal"],
+    openSources: [
+      { title: "Sentencia de la Audiencia de Lugo - Caso Pokémon", entity: "CENDOJ (Poder Judicial)" }
+    ],
+    implicatedCount: 7
+  },
+  {
+    id: "matas",
+    name: "Caso Matas",
+    year: 2010,
+    period: "Crisis y Ajuste (2008-2018)",
+    description: "El expresidente del Consejo Insular de Mallorca, Josep Juan Cardona 'Matas', fue condenado por malversación de fondos públicos. Utilizó fondos de la institución para fines personales y pagó sobresueldos a asesores.",
+    parties: ["PP"],
+    amountEstimated: 600000,
+    amountDisplay: "600.000€ (malversación)",
+    regions: ["Islas Baleares"],
+    status: "Sentenciado",
+    keyFigures: ["Josep Juan Cardona 'Matas'"],
+    consequences: "Condena a 3 años y 8 meses de prisión por malversación y prevaricación. Ingresó en prisión en 2017.",
+    sources: ["Tribunal Superior de Justicia de Baleares"],
+    corruptionTypes: ["Malversación", "Prevaricación"],
+    openSources: [
+      { title: "Sentencia del TSJ Baleares - Caso Matas", entity: "Tribunal Superior de Justicia de Baleares" }
+    ],
+    implicatedCount: 3
+  },
+  {
+    id: "tandem-villarejo",
+    name: "Caso Tándem / Villarejo",
+    year: 2017,
+    period: "Crisis y Ajuste (2008-2018)",
+    description: "Investigación sobre el excomisario José Manuel Villarejo, acusado de liderar una organización criminal que operó desde el interior de la Policía Nacional durante décadas. Incluye espionaje ilegal a comisarios rivales, cobro de comisiones de empresas de seguridad y encubrimiento de tramas de corrupción.",
+    parties: ["PP"],
+    amountEstimated: 15000000,
+    amountDisplay: "15M€ (presuntos cobros)",
+    regions: ["Nacional"],
+    status: "En Juicio",
+    keyFigures: ["José Manuel Villarejo", "Enrique García Castaño"],
+    consequences: "Prisión preventiva de Villarejo desde noviembre de 2017. Juicio oral en la Audiencia Nacional con más de 40 acusados. Piezas separadas sobre espionaje a comisarios, cobro de comisiones y encubrimiento de la trama Púnica.",
+    sources: ["Audiencia Nacional"],
+    corruptionTypes: ["Organización criminal", "Cohecho", "Blanqueo de capitales", "Malversación"],
+    openSources: [
+      { title: "Pieza principal del sumario Tándem", entity: "Audiencia Nacional - Sala de lo Penal" },
+      { title: "Investigación sobre espionaje ilegal en la Policía Nacional", entity: "El País" }
+    ],
+    implicatedCount: 25
+  },
+  {
+    id: "acuamed",
+    name: "Caso Acuamed",
+    year: 2016,
+    period: "Crisis y Ajuste (2008-2018)",
+    description: "Corrupción en la sociedad estatal Acuamed (Aguas de las Cuencas Mediterráneas). Se adjudicaron contratos de obras hidráulicas a empresas afines al PP con sobrecostes desorbitados, y se pagaron comisiones a cargos del partido.",
+    parties: ["PP"],
+    amountEstimated: 67000000,
+    amountDisplay: "67M€ (sobrecostes y comisiones)",
+    regions: ["Comunidad Valenciana", "Región de Murcia", "Andalucía"],
+    status: "En Juicio",
+    keyFigures: ["José Manuel Fabra", "Manuel Villegas"],
+    consequences: "Procesamiento de altos cargos de Acuamed y empresarios adjudicatarios. Juicio pendiente en la Audiencia Nacional.",
+    sources: ["Audiencia Nacional", "Fiscalía Anticorrupción"],
+    corruptionTypes: ["Cohecho", "Malversación", "Fraude en contratación pública", "Prevaricación"],
+    openSources: [
+      { title: "Auto de apertura de juicio oral - Caso Acuamed", entity: "Audiencia Nacional" },
+      { title: "Informe del Tribunal de Cuentas sobre Acuamed", entity: "Tribunal de Cuentas" }
+    ],
+    implicatedCount: 11
+  },
+  {
+    id: "pallerols",
+    name: "Caso Pallerols",
+    year: 2014,
+    period: "Crisis y Ajuste (2008-2018)",
+    description: "Desvío de fondos de la fundación humanitaria Pallerols (vinculada a Unió Democràtica de Catalunya) para financiar irregularmente a Convergència Democràtica de Catalunya. Se facturaron informes inexistentes y se cobraron comisiones de obras públicas.",
+    parties: ["UDC", "CiU"],
+    amountEstimated: 8000000,
+    amountDisplay: "8M€",
+    regions: ["Cataluña"],
+    status: "Sentenciado",
+    keyFigures: ["Lluís Prenafeta", "Josep Maria Trías de Bes"],
+    consequences: "Condena a Lluís Prenafeta por cohecho y malversación. Contribuyó a la ruptura de la coalición CiU entre CDC y UDC.",
+    sources: ["Audiencia de Barcelona"],
+    corruptionTypes: ["Cohecho", "Malversación", "Financiación ilegal", "Falsedad documental"],
+    openSources: [
+      { title: "Sentencia de la Audiencia de Barcelona - Caso Pallerols", entity: "CENDOJ (Poder Judicial)" }
+    ],
+    implicatedCount: 5
+  },
+  {
+    id: "marea",
+    name: "Caso Marea",
+    year: 2015,
+    period: "Crisis y Ajuste (2008-2018)",
+    description: "Trama de corrupción en el Ayuntamiento de Valencia. El alcalde Rita Barberá y su equipo adjudicaron contratos públicos de forma irregular a empresas afines, y se pagaron comisiones a través de facturas falsas por servicios de publicidad y relaciones públicas.",
+    parties: ["PP"],
+    amountEstimated: 12000000,
+    amountDisplay: "12M€ (facturas irregulares)",
+    regions: ["Comunidad Valenciana"],
+    status: "Sentenciado",
+    keyFigures: ["Rita Barberá", "Alfonso Rus"],
+    consequences: "Rita Barberá fue investigada pero falleció en 2016 antes de ser juzgada. Alfonso Rus, exdiputado del PP, fue condenado por malversación.",
+    sources: ["Audiencia de Valencia", "Tribunal Supremo"],
+    corruptionTypes: ["Malversación", "Prevaricación", "Falsedad documental", "Cohecho"],
+    openSources: [
+      { title: "Investigación judicial sobre el Ayuntamiento de Valencia", entity: "Audiencia de Valencia" },
+      { title: "Sentencia sobre Alfonso Rus", entity: "CENDOJ (Poder Judicial)" }
+    ],
+    implicatedCount: 12
+  },
+  {
+    id: "mercurio",
+    name: "Caso Mercurio",
+    year: 2016,
+    period: "Crisis y Ajuste (2008-2018)",
+    description: "Trama de corrupción en la Región de Murcia. El expresidente Ramón Luis Valcárcel adjudicó contratos públicos a empresas afines al PP a través de la Fundación Formación y Empleo, desviando subvenciones para la formación profesional.",
+    parties: ["PP"],
+    amountEstimated: 5000000,
+    amountDisplay: "5M€ (fondos de formación desviados)",
+    regions: ["Región de Murcia"],
+    status: "Sentenciado",
+    keyFigures: ["Ramón Luis Valcárcel", "Juan Carlos Ruiz Soler"],
+    consequences: "Condena por prevaricación y malversación a varios cargos del PP murciano. Valcárcel fue absuelto pero varios de sus colaboradores fueron condenados.",
+    sources: ["Tribunal Superior de Justicia de Murcia"],
+    corruptionTypes: ["Malversación", "Prevaricación", "Fraude en contratación pública"],
+    openSources: [
+      { title: "Sentencia del TSJ de Murcia - Caso Mercurio", entity: "Tribunal Superior de Justicia de Murcia" }
+    ],
+    implicatedCount: 9
   }
 ];
