@@ -22,6 +22,7 @@ import {
   Scale,
   AlertTriangle,
   TrendingDown,
+  TrendingUp,
   Globe,
   MapPin,
   Calendar,

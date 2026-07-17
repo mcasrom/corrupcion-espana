@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap');
+      .serif { font-family: 'Playfair Display', Georgia, 'Times New Roman', serif; }
+      .sans { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+      .mono { font-family: 'JetBrains Mono', 'Courier New', monospace; }
+    </style>
+  </defs>
+
+  <!-- Background cream -->
+  <rect width="1200" height="630" fill="#F4F1EA"/>
+
+  <!-- Top red stripe -->
+  <rect width="1200" height="6" fill="#991B1B"/>
+
+  <!-- Left editorial column border -->
+  <rect x="0" y="0" width="6" height="630" fill="#1a1a1a"/>
+
+  <!-- Thin rule under top stripe -->
+  <rect x="40" y="42" width="1120" height="1" fill="#1a1a1a" opacity="0.3"/>
+
+  <!-- Header badge -->
+  <rect x="40" y="18" width="220" height="22" fill="#991B1B"/>
+  <text x="150" y="34" text-anchor="middle" fill="white" font-size="10" font-weight="700" letter-spacing="3" class="sans">OBSERVATORIO DE CORRUPCION</text>
+
+  <!-- Date / Source -->
+  <text x="1160" y="34" text-anchor="end" fill="#666" font-size="9" letter-spacing="2" class="mono">JULIO 2026 · FUENTES JUDICIALES</text>
+
+  <!-- Main Headline -->
+  <text x="40" y="100" fill="#0f0f14" font-size="52" font-weight="900" letter-spacing="-1" class="serif">Corrupcion en Espana</text>
+
+  <!-- Subheadline -->
+  <text x="40" y="140" fill="#444" font-size="22" font-weight="400" font-style="italic" class="serif">35+ casos documentados · Fuentes judiciales verificadas</text>
+
+  <!-- Divider -->
+  <rect x="40" y="158" width="1120" height="2" fill="#1a1a1a" opacity="0.15"/>
+
+  <!-- KPI Row -->
+  <!-- KPI 1: Cases -->
+  <rect x="40" y="180" width="260" height="110" fill="white" stroke="#e5e5e5" stroke-width="1"/>
+  <text x="56" y="208" fill="#888" font-size="9" font-weight="700" letter-spacing="2.5" class="sans">CASOS DOCUMENTADOS</text>
+  <text x="56" y="260" fill="#0f0f14" font-size="56" font-weight="300" class="serif">35</text>
+  <text x="130" y="260" fill="#0f0f14" font-size="22" font-weight="300" class="serif">+</text>
+  <text x="56" y="280" fill="#888" font-size="11" class="sans">Expedientes judiciales verificados</text>
+
+  <!-- KPI 2: Amount -->
+  <rect x="320" y="180" width="260" height="110" fill="white" stroke="#e5e5e5" stroke-width="1"/>
+  <text x="336" y="208" fill="#888" font-size="9" font-weight="700" letter-spacing="2.5" class="sans">PERDIDA FISCAL ESTIMADA</text>
+  <text x="336" y="260" fill="#991B1B" font-size="42" font-weight="700" class="mono">EUR 6.7B</text>
+  <text x="336" y="280" fill="#888" font-size="11" class="sans">Documentado en sumarios</text>
+
+  <!-- KPI 3: CIS -->
+  <rect x="600" y="180" width="260" height="110" fill="white" stroke="#e5e5e5" stroke-width="1"/>
+  <text x="616" y="208" fill="#888" font-size="9" font-weight="700" letter-spacing="2.5" class="sans">CIS BAROMETRO 2026</text>
+  <text x="616" y="260" fill="#0f0f14" font-size="56" font-weight="300" class="serif">4<tspan font-size="28" dy="-20">o</tspan></text>
+  <text x="680" y="252" fill="#444" font-size="16" class="sans">problema</text>
+  <text x="680" y="272" fill="#444" font-size="16" class="sans">del pais</text>
+  <text x="616" y="280" fill="#991B1B" font-size="10" font-weight="700" class="sans">+8.7pts en un mes (Zapatero/Leire Diez)</text>
+
+  <!-- KPI 4: CPI -->
+  <rect x="880" y="180" width="280" height="110" fill="white" stroke="#e5e5e5" stroke-width="1"/>
+  <text x="896" y="208" fill="#888" font-size="9" font-weight="700" letter-spacing="2.5" class="sans">CPI TRANSPARENCY INTL</text>
+  <text x="896" y="260" fill="#0f0f14" font-size="56" font-weight="300" class="serif">56</text>
+  <text x="960" y="248" fill="#444" font-size="14" class="sans">/100</text>
+  <text x="896" y="278" fill="#888" font-size="11" class="sans">Puesto 46o mundial · 16o en UE-27</text>
+  <text x="896" y="280" fill="none" stroke="none"/>
+
+  <!-- Divider -->
+  <rect x="40" y="310" width="1120" height="1" fill="#1a1a1a" opacity="0.15"/>
+
+  <!-- Party breakdown mini -->
+  <text x="40" y="342" fill="#888" font-size="9" font-weight="700" letter-spacing="2.5" class="sans">DESGLOSE POR PARTIDO</text>
+
+  <!-- PP bar -->
+  <rect x="40" y="355" width="180" height="16" fill="#0066CC" rx="0"/>
+  <text x="50" y="367" fill="white" font-size="9" font-weight="700" class="sans">PP · 18 casos</text>
+
+  <!-- PSOE bar -->
+  <rect x="40" y="378" width="130" height="16" fill="#E30613" rx="0"/>
+  <text x="50" y="390" fill="white" font-size="9" font-weight="700" class="sans">PSOE · 12 casos</text>
+
+  <!-- CiU bar -->
+  <rect x="40" y="401" width="60" height="16" fill="#1B5E20" rx="0"/>
+  <text x="50" y="413" fill="white" font-size="9" font-weight="700" class="sans">CiU</text>
+
+  <!-- Regions mini -->
+  <text x="340" y="342" fill="#888" font-size="9" font-weight="700" letter-spacing="2.5" class="sans">CCAA MAS AFECTADAS</text>
+  <text x="340" y="362" fill="#0f0f14" font-size="12" class="sans">Andalucia · Madrid · Valencia · Cataluna · Murcia</text>
+  <text x="340" y="382" fill="#888" font-size="11" class="sans">Nivel Critico en 4 comunidades</text>
+
+  <!-- Timeline mini -->
+  <text x="700" y="342" fill="#888" font-size="9" font-weight="700" letter-spacing="2.5" class="sans">LINEA TEMPORAL</text>
+  <text x="700" y="362" fill="#0f0f14" font-size="12" class="sans">1982 ——— 2001 ——— 2010 ——— 2020 ——— 2026</text>
+  <text x="700" y="382" fill="#888" font-size="11" class="sans">44 anos de datos documentados</text>
+
+  <!-- Divider -->
+  <rect x="40" y="425" width="1120" height="2" fill="#1a1a1a" opacity="0.2"/>
+
+  <!-- CTA Section -->
+  <rect x="40" y="445" width="1120" height="90" fill="#0f0f14"/>
+  <text x="600" y="478" text-anchor="middle" fill="white" font-size="24" font-weight="700" letter-spacing="1" class="serif">Explora los datos. Verifica las fuentes.</text>
+  <text x="600" y="505" text-anchor="middle" fill="#999" font-size="13" letter-spacing="3" class="sans">CORRUPCION.VIAJEINTELIGENCIA.COM</text>
+
+  <!-- CTA Arrow -->
+  <polygon points="600,520 615,530 600,540" fill="#991B1B"/>
+
+  <!-- Bottom rule -->
+  <rect x="40" y="550" width="1120" height="1" fill="#1a1a1a" opacity="0.15"/>
+
+  <!-- Footer -->
+  <text x="40" y="575" fill="#888" font-size="9" letter-spacing="2" class="sans">DATOS JUDICIALES VERIFICADOS · SIN VALORACIONES POLITICAS</text>
+  <text x="1160" y="575" text-anchor="end" fill="#888" font-size="9" letter-spacing="2" class="mono">OSINT ENGINE v2.4</text>
+
+  <!-- Bottom red stripe -->
+  <rect y="624" width="1200" height="6" fill="#991B1B"/>
+</svg>
