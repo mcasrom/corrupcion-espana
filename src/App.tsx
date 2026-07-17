@@ -191,7 +191,10 @@ export default function App() {
           <span className="font-bold">
             © 2026 Observatorio de Corrupción · Proyecto Transparencia
           </span>
-          <div className="flex gap-6 font-mono text-[9px] opacity-60">
+          <div className="flex gap-6 font-mono text-[9px] opacity-60 items-center">
+            <a href="mailto:observatorio@viajeinteligencia.com" className="underline hover:text-slate-900 transition-colors">
+              observatorio@viajeinteligencia.com
+            </a>
             <span>OSINT Engine v2.4</span>
             <span>Hetzner / Debian</span>
             <span>vía{" "}
