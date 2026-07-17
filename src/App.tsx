@@ -9,6 +9,7 @@ import { OsintTerminal } from "./components/OsintTerminal";
 import { Methodology } from "./components/Methodology";
 import { LiveFeed } from "./components/LiveFeed";
 import { AddUpdateForm } from "./components/AddUpdateForm";
+import { AuthModal } from "./components/AuthModal";
 import { motion, AnimatePresence } from "motion/react";
 import {
   BarChart3,
@@ -31,6 +32,7 @@ export default function App() {
   const [casesLoading, setCasesLoading] = useState(true);
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState<{ email: string; role: string } | null>(null);
+  const [showAuth, setShowAuth] = useState(false);
 
   useEffect(() => {
     setCasesLoading(true);
@@ -100,6 +102,9 @@ export default function App() {
               <span className="opacity-40 mb-0.5">Despliegue</span>
               <span>{cases.length} casos · {cases.reduce((s, c) => s + c.implicatedCount, 0)} implicados</span>
             </div>
+            <button onClick={() => setShowAuth(true)} className="ml-4 px-3 py-2 border border-black/20 rounded text-[10px] uppercase tracking-widest font-bold hover:bg-black hover:text-white transition-colors">
+              {user ? user.email.split("@")[0] : "Acceder"}
+            </button>
           </div>
         </div>
       </header>
