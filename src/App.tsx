@@ -7,6 +7,8 @@ import { CaseDetail } from "./components/CaseDetail";
 import { ControlMap } from "./components/ControlMap";
 import { OsintTerminal } from "./components/OsintTerminal";
 import { Methodology } from "./components/Methodology";
+import { LiveFeed } from "./components/LiveFeed";
+import { AddUpdateForm } from "./components/AddUpdateForm";
 import { motion, AnimatePresence } from "motion/react";
 import {
   BarChart3,
@@ -17,9 +19,10 @@ import {
   ShieldAlert,
   ChevronRight,
   Eye,
+  Radio,
 } from "lucide-react";
 
-type Tab = "dashboard" | "cronologia" | "mapa" | "osint" | "metodologia" | "caso";
+type Tab = "dashboard" | "cronologia" | "mapa" | "osint" | "metodologia" | "vivo" | "caso";
 
 export default function App() {
   const [tab, setTab] = useState<Tab>("dashboard");
@@ -27,10 +30,12 @@ export default function App() {
   const [cases, setCases] = useState<CorruptionCase[]>([]);
   const [casesLoading, setCasesLoading] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState<{ email: string; role: string } | null>(null);
 
   useEffect(() => {
     setCasesLoading(true);
     fetchCases().then((d) => setCases(d)).catch(() => setCases([])).finally(() => setCasesLoading(false));
+    fetch("/api/auth/me", { credentials: "include" }).then((r) => r.json()).then((d) => { console.log("AUTH_ME", JSON.stringify(d)); if (d.authenticated) setUser(d.user); }).catch((e) => console.log("AUTH_ERR", e.message));
   }, []);
 
   const handleCaseSelect = (c: CorruptionCase) => {
@@ -61,6 +66,7 @@ export default function App() {
     { id: "mapa", label: "Mapa de Control", icon: Map },
     { id: "osint", label: "Terminal OSINT", icon: Terminal },
     { id: "metodologia", label: "Metodología", icon: BookOpen },
+    { id: "vivo", label: "En vivo / Hoy", icon: Radio },
   ];
 
   return (
@@ -188,6 +194,12 @@ export default function App() {
             {tab === "mapa" && <ControlMap />}
             {tab === "osint" && <OsintTerminal onSearch={handleSearch} loading={loading} />}
             {tab === "metodologia" && <Methodology />}
+            {tab === "vivo" && (
+              <div className="space-y-8">
+                {user?.role === "admin" && <AddUpdateForm />}
+                <LiveFeed onSelectCase={(slug) => { setSelectedCase(cases.find((x) => x.id === String(slug)) || null); setTab("caso"); }} />
+              </div>
+            )}
           </motion.div>
         </AnimatePresence>
       </main>

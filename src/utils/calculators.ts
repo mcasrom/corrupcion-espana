@@ -144,7 +144,7 @@ export interface CCAAStat {
   count: number;
   amount: number;
   sentenciados: number;
-  riskLevel: "ALTO" | "MEDIO" | "BAJO";
+  riskLevel: "Alto" | "Moderado" | "Bajo";
 }
 
 export function groupByCCAA(cases: CorruptionCase[]): CCAAStat[] {
@@ -155,7 +155,7 @@ export function groupByCCAA(cases: CorruptionCase[]): CCAAStat[] {
     );
     const uniq = Array.from(new Set(ccaas));
     for (const name of uniq) {
-      if (!acc[name]) acc[name] = { name, count: 0, amount: 0, sentenciados: 0, riskLevel: "BAJO" };
+      if (!acc[name]) acc[name] = { name, count: 0, amount: 0, sentenciados: 0, riskLevel: "Bajo" };
       acc[name].count += 1;
       acc[name].amount += c.amountEstimated || 0;
       if (c.status === "Sentenciado") acc[name].sentenciados += 1;
@@ -163,9 +163,9 @@ export function groupByCCAA(cases: CorruptionCase[]): CCAAStat[] {
   }
   const list = Object.values(acc);
   for (const s of list) {
-    if (s.count >= 8 || s.amount >= 5e9) s.riskLevel = "ALTO";
-    else if (s.count >= 3 || s.amount >= 5e8) s.riskLevel = "MEDIO";
-    else s.riskLevel = "BAJO";
+    if (s.count >= 8 || s.amount >= 5e9) s.riskLevel = "Alto";
+    else if (s.count >= 3 || s.amount >= 5e8) s.riskLevel = "Moderado";
+    else s.riskLevel = "Bajo";
   }
   return list.sort((a, b) => b.amount - a.amount);
 }
