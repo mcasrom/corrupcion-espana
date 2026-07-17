@@ -17,7 +17,9 @@ export type CorruptionType =
   | "Falsedad documental"
   | "Apropiación indebida"
   | "Organización criminal"
-  | "Delito fiscal";
+  | "Delito fiscal"
+  | "Desobediencia"
+  | "Perversión de la justicia";
 
 export interface CaseSource {
   title: string;

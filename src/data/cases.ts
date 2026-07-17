@@ -477,7 +477,7 @@ export const CASES: CorruptionCase[] = [
     keyFigures: ["Jordi Turull", "Raül Romeva", "Oriol Junqueras", "Carles Puigdemont"],
     consequences: "Procesamiento de 12 líderes independentistas por delitos de rebelión, malversación y desobediencia. Sentencia del Tribunal Supremo (2019): penas de 9 a 13 años de prisión. La malversación acreditada superó 'ampliamente' los 250.000€. La responsabilidad civil se fijó en 4.279.985€. Indultos parciales en 2021.",
     sources: ["Tribunal Supremo", "Audiencia Nacional"],
-    corruptionTypes: ["Malversación", "Desobediencia", "Organización criminal", "Perversion de la justicia"],
+    corruptionTypes: ["Malversación", "Desobediencia", "Organización criminal", "Perversión de la justicia"],
     openSources: [
       { title: "Sentencia del Tribunal Supremo - Caso del Procés", entity: "Tribunal Supremo" },
       { title: "Auto de apertura de juicio oral", entity: "Tribunal Supremo - Sala de lo Penal" }

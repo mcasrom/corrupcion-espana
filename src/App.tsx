@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CorruptionCase, OsintResult } from "./types";
-import { CASES } from "./data/cases";
+import { fetchCases } from "./data/apiCases";
 import { Dashboard } from "./components/Dashboard";
 import { Chronology } from "./components/Chronology";
 import { CaseDetail } from "./components/CaseDetail";
@@ -24,7 +24,14 @@ type Tab = "dashboard" | "cronologia" | "mapa" | "osint" | "metodologia" | "caso
 export default function App() {
   const [tab, setTab] = useState<Tab>("dashboard");
   const [selectedCase, setSelectedCase] = useState<CorruptionCase | null>(null);
+  const [cases, setCases] = useState<CorruptionCase[]>([]);
+  const [casesLoading, setCasesLoading] = useState(true);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setCasesLoading(true);
+    fetchCases().then((d) => setCases(d)).catch(() => setCases([])).finally(() => setCasesLoading(false));
+  }, []);
 
   const handleCaseSelect = (c: CorruptionCase) => {
     setSelectedCase(c);
@@ -85,7 +92,7 @@ export default function App() {
             </div>
             <div className="flex flex-col items-start md:items-end">
               <span className="opacity-40 mb-0.5">Despliegue</span>
-              <span>{CASES.length} casos · {CASES.reduce((s, c) => s + c.implicatedCount, 0)} implicados</span>
+              <span>{cases.length} casos · {cases.reduce((s, c) => s + c.implicatedCount, 0)} implicados</span>
             </div>
           </div>
         </div>
@@ -164,7 +171,7 @@ export default function App() {
             className="focus:outline-none"
           >
             {tab === "dashboard" && !selectedCase && (
-              <Dashboard cases={CASES} onCaseSelect={handleCaseSelect} />
+              <Dashboard cases={cases} onCaseSelect={handleCaseSelect} />
             )}
             {tab === "caso" && selectedCase && (
               <CaseDetail
@@ -176,7 +183,7 @@ export default function App() {
               />
             )}
             {tab === "cronologia" && (
-              <Chronology cases={CASES} onCaseSelect={handleCaseSelect} />
+              <Chronology cases={cases} onCaseSelect={handleCaseSelect} />
             )}
             {tab === "mapa" && <ControlMap />}
             {tab === "osint" && <OsintTerminal onSearch={handleSearch} loading={loading} />}

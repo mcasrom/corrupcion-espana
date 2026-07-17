@@ -110,3 +110,91 @@ export function filterCases(
     return true;
   });
 }
+
+// ---- Derivaciones desde datos reales (backend vivo) ----
+
+const REGION_TO_CCAA: Record<string, string> = {
+  Andalucía: "Andalucía",
+  "Málaga": "Andalucía",
+  Sevilla: "Andalucía",
+  Madrid: "Madrid",
+  Cataluña: "Cataluña",
+  Barcelona: "Cataluña",
+  "Lleida": "Cataluña",
+  Girona: "Cataluña",
+  Valencia: "Comunidad Valenciana",
+  "Comunidad Valenciana": "Comunidad Valenciana",
+  Alicante: "Comunidad Valenciana",
+  Baleares: "Baleares",
+  "País Vasco": "País Vasco",
+  Navarra: "Navarra",
+  "Aragón": "Aragón",
+  Zaragoza: "Aragón",
+  Galicia: "Galicia",
+  Asturias: "Asturias",
+  Murcia: "Murcia",
+  Castilla: "Castilla y León",
+  "Castilla-La Mancha": "Castilla-La Mancha",
+  Canarias: "Canarias",
+  Nacional: "Ámbito Nacional",
+};
+
+export interface CCAAStat {
+  name: string;
+  count: number;
+  amount: number;
+  sentenciados: number;
+  riskLevel: "ALTO" | "MEDIO" | "BAJO";
+}
+
+export function groupByCCAA(cases: CorruptionCase[]): CCAAStat[] {
+  const acc: Record<string, CCAAStat> = {};
+  for (const c of cases) {
+    const ccaas = (c.regions && c.regions.length ? c.regions : ["Nacional"]).map(
+      (r) => REGION_TO_CCAA[r] || r
+    );
+    const uniq = Array.from(new Set(ccaas));
+    for (const name of uniq) {
+      if (!acc[name]) acc[name] = { name, count: 0, amount: 0, sentenciados: 0, riskLevel: "BAJO" };
+      acc[name].count += 1;
+      acc[name].amount += c.amountEstimated || 0;
+      if (c.status === "Sentenciado") acc[name].sentenciados += 1;
+    }
+  }
+  const list = Object.values(acc);
+  for (const s of list) {
+    if (s.count >= 8 || s.amount >= 5e9) s.riskLevel = "ALTO";
+    else if (s.count >= 3 || s.amount >= 5e8) s.riskLevel = "MEDIO";
+    else s.riskLevel = "BAJO";
+  }
+  return list.sort((a, b) => b.amount - a.amount);
+}
+
+export interface TimelineStat {
+  period: string;
+  cases: number;
+  cost: number;
+  highlight: string;
+}
+
+const PERIODS: { label: string; from: number; to: number }[] = [
+  { label: "1975-1989", from: 1975, to: 1989 },
+  { label: "1990-1999", from: 1990, to: 1999 },
+  { label: "2000-2009", from: 2000, to: 2009 },
+  { label: "2010-2019", from: 2010, to: 2019 },
+  { label: "2020-2026", from: 2020, to: 2026 },
+];
+
+export function groupByPeriodTimeline(cases: CorruptionCase[]): TimelineStat[] {
+  return PERIODS.map((p) => {
+    const inPeriod = cases.filter((c) => c.year >= p.from && c.year <= p.to);
+    return {
+      period: p.label,
+      cases: inPeriod.length,
+      cost: inPeriod.reduce((s, c) => s + (c.amountEstimated || 0), 0),
+      highlight: inPeriod.length
+        ? "Destacan: " + inPeriod.slice(0, 2).map((c) => c.name).join(" · ")
+        : "Sin casos documentados en este periodo.",
+    };
+  });
+}

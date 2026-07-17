@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CorruptionCase } from "../types";
-import { calculateKPIs, formatCurrency, getStatusColor, getStatusTextColor, groupCasesByParty } from "../utils/calculators";
+import { calculateKPIs, formatCurrency, getStatusColor, getStatusTextColor, groupCasesByParty, groupByCCAA, groupByPeriodTimeline } from "../utils/calculators";
 import {
   CPI_2024,
   CPI_2025,
@@ -75,10 +75,12 @@ export function Dashboard({ cases, onCaseSelect }: DashboardProps) {
 
   const maxPartyAmount = Math.max(...partyBreakdown.map(([, d]) => d.amount));
 
-  const ccaaSorted = [...CCAA_DATA].sort((a, b) => b.estimatedCost - a.estimatedCost);
-  const maxCCaacCost = Math.max(...ccaaSorted.map((c) => c.estimatedCost));
+  const ccaaSorted = groupByCCAA(cases);
+  const maxCCaacCost = Math.max(...ccaaSorted.map((x) => x.amount));
 
   const cpiPct = (CPI_2024.cpiScore / 100) * 100;
+  const timelineData = groupByPeriodTimeline(cases);
+  const maxTimelineCost = Math.max(...timelineData.map((d) => d.cost));
 
   return (
     <div className="space-y-8" id="dashboard-root">
@@ -555,7 +557,7 @@ export function Dashboard({ cases, onCaseSelect }: DashboardProps) {
 
         <div className="space-y-3">
           {ccaaSorted.map((ccaa, idx) => {
-            const pct = maxCCaacCost > 0 ? (ccaa.estimatedCost / maxCCaacCost) * 100 : 0;
+            const pct = maxCCaacCost > 0 ? (ccaa.amount / maxCCaacCost) * 100 : 0;
             const risk = RISK_COLORS[ccaa.riskLevel];
             return (
               <div key={ccaa.name} className="space-y-1">
@@ -568,7 +570,7 @@ export function Dashboard({ cases, onCaseSelect }: DashboardProps) {
                     <span className={`text-[9px] font-extrabold uppercase px-1.5 py-0.5 border ${risk.bg} ${risk.text}`}>
                       {ccaa.riskLevel}
                     </span>
-                    <span className="font-mono text-slate-950 font-bold">{formatCurrency(ccaa.estimatedCost)}€</span>
+                    <span className="font-mono text-slate-950 font-bold">{formatCurrency(ccaa.amount)}€</span>
                   </div>
                 </div>
                 <div className="w-full bg-slate-100 h-2.5 overflow-hidden">
@@ -580,7 +582,7 @@ export function Dashboard({ cases, onCaseSelect }: DashboardProps) {
                   />
                 </div>
                 <div className="text-[10px] text-slate-400 font-sans pl-5">
-                  {ccaa.notableCases.slice(0, 2).join(" · ")}
+                  {ccaa.count} casos documentados · {ccaa.sentenciados} con sentencia firme
                 </div>
               </div>
             );
@@ -605,8 +607,7 @@ export function Dashboard({ cases, onCaseSelect }: DashboardProps) {
         </p>
 
         <div className="space-y-4">
-          {TIMELINE_DATA.map((t, idx) => {
-            const maxTimelineCost = Math.max(...TIMELINE_DATA.map((d) => d.cost));
+          {timelineData.map((t, idx) => {
             const pct = maxTimelineCost > 0 ? (t.cost / maxTimelineCost) * 100 : 0;
             return (
               <div key={t.period} className="flex gap-4 items-start">
