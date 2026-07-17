@@ -325,6 +325,73 @@ export const RISK_COLORS: Record<string, { bg: string; text: string; bar: string
 };
 
 // ─────────────────────────────────────────────────────────────
+// CIS — Barómetro de Opinión (Julio 2026)
+// Fuente: Centro de Investigaciones Sociológicas
+// https://www.cis.es/documents/d/guest/es3571mar_A-pdf
+// Estudio 3571, N=4.020, entrevistas en domicile
+// ─────────────────────────────────────────────────────────────
+export interface CisProblem {
+  name: string;
+  mainProblem: number;     // % que lo cita como 1er, 2º o 3er problema del país
+  mainFirst: number;       // % que lo cita como 1er problema
+  personalConcern: number; // % que lo cita como problema personal
+  trend: "up" | "down" | "stable";
+  note?: string;
+}
+
+export const CIS_JULY_2026 = {
+  month: "Julio 2026",
+  studyId: "Estudio 3571",
+  sampleSize: 4020,
+  fieldwork: "Junio-Julio 2026",
+  corruptionRank: 4,         // 4º problema del país
+  corruptionPercent: 17.8,   // % de menciones como problema nacional
+  corruptionPrevious: 9.1,   // % en mayo 2026 (10º puesto)
+  corruptionJump: "+8.7pp",  // subida tras caso Zapatero + Leire Díez
+  corruptionPersonalRank: 11,
+  corruptionPersonalPercent: 6.6,
+  source: "https://www.cis.es/documents/d/guest/es3571mar_A-pdf",
+};
+
+export const CIS_PROBLEMS_NACIONALES: CisProblem[] = [
+  { name: "La vivienda", mainProblem: 43.0, mainFirst: 23.3, personalConcern: 27.5, trend: "up" },
+  { name: "La inmigración", mainProblem: 23.4, mainFirst: 4.5, personalConcern: 9.8, trend: "stable" },
+  { name: "Problemas políticos en general", mainProblem: 18.7, mainFirst: 11.0, personalConcern: 8.0, trend: "up" },
+  { name: "La corrupción y el fraude", mainProblem: 17.8, mainFirst: 8.6, personalConcern: 6.6, trend: "up", note: "Subió del 10º al 4º puesto en un mes" },
+  { name: "Crisis económica", mainProblem: 17.3, mainFirst: 4.6, personalConcern: 28.6, trend: "stable" },
+  { name: "Calidad del empleo", mainProblem: 15.0, mainFirst: 3.5, personalConcern: 15.6, trend: "stable" },
+  { name: "Gobierno y partidos concretos", mainProblem: 11.9, mainFirst: 9.5, personalConcern: 4.2, trend: "up" },
+  { name: "El paro", mainProblem: 11.1, mainFirst: 2.7, personalConcern: 7.8, trend: "down" },
+  { name: "Extremismos", mainProblem: 11.0, mainFirst: 4.8, personalConcern: 3.9, trend: "stable" },
+  { name: "Mal comportamiento políticos", mainProblem: 10.8, mainFirst: 6.2, personalConcern: 4.7, trend: "up" },
+  { name: "La sanidad", mainProblem: 10.4, mainFirst: 0.9, personalConcern: 21.7, trend: "down" },
+];
+
+// ─────────────────────────────────────────────────────────────
+// CONSEJO DE TRANSPARENCIA — Organismos de control
+// ─────────────────────────────────────────────────────────────
+export const CONSEJO_TRANSPARENCIA = {
+  name: "Consejo de Transparencia y Buen Gobierno",
+  acronym: "CTBG",
+  legalBasis: "Ley 19/2013, de 9 de diciembre",
+  president: "Concepción Campos Acuña",
+  presidentSince: "2026-04-02",
+  staff: "~30 funcionarios",
+  independence: "Autoridad administrativa independiente. Autonomía orgánica y funcional completa.",
+  functions: [
+    "Resuelve reclamaciones sobre acceso a información pública",
+    "Evalúa el cumplimiento de la Ley de Transparencia (publicidad activa)",
+    "Asesora en materia de transparencia y buen gobierno",
+    "Capacita a empleados públicos y sensibiliza a la ciudadanía",
+    "Colabora con órganos análogos autonómicos e internacionales",
+    "Rinde cuentas anualmente ante el Congreso de los Diputados",
+  ],
+  limitation: "No tiene competencia directa en 'buen gobierno' pese a su denominación.",
+  url: "https://consejodetransparencia.es",
+  note: "Creado en 2015. Evaluación anual del cumplimiento de obligaciones de transparencia de todas las administraciones públicas.",
+};
+
+// ─────────────────────────────────────────────────────────────
 // NOTA SOBRE FUENTES
 // ─────────────────────────────────────────────────────────────
 export const DATA_SOURCES = {

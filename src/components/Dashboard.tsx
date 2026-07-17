@@ -11,6 +11,9 @@ import {
   STATUS_COLORS,
   RISK_COLORS,
   DATA_SOURCES,
+  CIS_JULY_2026,
+  CIS_PROBLEMS_NACIONALES,
+  CONSEJO_TRANSPARENCIA,
 } from "../data/indices";
 import { motion, AnimatePresence } from "motion/react";
 import {
@@ -233,6 +236,144 @@ export function Dashboard({ cases, onCaseSelect }: DashboardProps) {
             Mayor puntuación = más impunidad.
           </p>
         </motion.div>
+      </div>
+
+      {/* CIS Barómetro Panel */}
+      <div className="editorial-card overflow-hidden">
+        <div className="p-6 border-b border-black/15 bg-[#FAF9F6]">
+          <div className="flex items-center gap-2 mb-1">
+            <BarChart3 className="h-4 w-4 text-indigo-700" />
+            <h3 className="text-xs font-sans font-extrabold uppercase tracking-widest text-slate-950">
+              CIS Barómetro de Opinión — Julio 2026
+            </h3>
+          </div>
+          <p className="text-[11px] text-slate-500 font-sans">
+            Centro de Investigaciones Sociológicas · Estudio {CIS_JULY_2026.studyId} · N={CIS_JULY_2026.sampleSize.toLocaleString()}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+          {/* Left: Corruption headline card */}
+          <div className="p-6 border-b lg:border-b-0 lg:border-r border-black/10">
+            <div className="bg-red-50 border border-red-200 p-5 h-full flex flex-col justify-between">
+              <div>
+                <span className="text-[9px] font-sans font-extrabold uppercase tracking-widest text-red-700">
+                  La corrupción en el CIS
+                </span>
+                <div className="flex items-end gap-3 mt-3">
+                  <span className="text-5xl font-serif font-bold text-red-700 leading-none">4º</span>
+                  <div className="pb-1">
+                    <span className="text-[11px] font-sans text-slate-600 block">problema del país</span>
+                    <span className="text-2xl font-mono font-bold text-slate-950">{CIS_JULY_2026.corruptionPercent}%</span>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-4 space-y-2">
+                <div className="flex items-center gap-2 text-[11px] font-sans">
+                  <span className="inline-flex items-center gap-1 bg-red-700 text-white px-2 py-0.5 font-bold">
+                    <TrendingUp className="h-3 w-3" />
+                    {CIS_JULY_2026.corruptionJump}
+                  </span>
+                  <span className="text-slate-600">desde mayo ({CIS_JULY_2026.corruptionPrevious}%, 10º puesto)</span>
+                </div>
+                <p className="text-[10px] text-slate-500 font-sans leading-relaxed">
+                  Subida tras la imputación de Zapatero (caso Plus Ultra) y la reactivación de Leire Díez
+                  ("fontanera del PSOE"). Pico reciente: 25,3% en julio 2025 (2º problema, tras encarcelación de Santos Cerdán).
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Center: Top 11 problems as bars */}
+          <div className="p-6 border-b lg:border-b-0 lg:border-r border-black/10">
+            <span className="text-[10px] font-sans font-extrabold uppercase tracking-widest text-slate-500 block mb-3">
+              Principales problemas del país
+            </span>
+            <div className="space-y-2">
+              {CIS_PROBLEMS_NACIONALES.map((prob, idx) => {
+                const isCorruption = prob.name === "La corrupción y el fraude";
+                const pct = prob.mainProblem;
+                return (
+                  <div key={prob.name} className="flex items-center gap-2">
+                    <span className={`text-[10px] font-mono w-5 text-right ${isCorruption ? "font-extrabold text-red-700" : "text-slate-400"}`}>
+                      {idx + 1}.
+                    </span>
+                    <span className={`text-[11px] font-sans w-44 truncate ${isCorruption ? "font-extrabold text-red-700" : "text-slate-700"}`}>
+                      {prob.name}
+                    </span>
+                    <div className="flex-1 bg-slate-100 h-2.5 overflow-hidden">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: `${(pct / 50) * 100}%` }}
+                        transition={{ duration: 0.5, delay: idx * 0.04 }}
+                        className={`h-full ${isCorruption ? "bg-red-700" : "bg-indigo-400"}`}
+                      />
+                    </div>
+                    <span className={`text-[11px] font-mono w-10 text-right ${isCorruption ? "font-extrabold text-red-700" : "text-slate-600"}`}>
+                      {pct}%
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Right: Personal concern vs National problem comparison */}
+          <div className="p-6">
+            <span className="text-[10px] font-sans font-extrabold uppercase tracking-widest text-slate-500 block mb-3">
+              País vs. Personal — La paradoja
+            </span>
+            <p className="text-[10px] text-slate-500 font-sans mb-4 leading-relaxed">
+              Los ciudadanos ven la corrupción como un <strong className="text-slate-700">grave problema del país</strong> (4º),
+              pero <strong className="text-slate-700">no les afecta directamente</strong> (11º). Es percibida como sistémica, no personal.
+            </p>
+            <div className="space-y-3">
+              {CIS_PROBLEMS_NACIONALES.slice(0, 8).map((prob, idx) => {
+                const isCorruption = prob.name === "La corrupción y el fraude";
+                const diff = prob.mainProblem - prob.personalConcern;
+                return (
+                  <div key={prob.name} className={`p-2.5 border ${isCorruption ? "border-red-300 bg-red-50" : "border-black/10 bg-white"}`}>
+                    <div className="flex justify-between items-center mb-1.5">
+                      <span className={`text-[10px] font-sans truncate ${isCorruption ? "font-extrabold text-red-700" : "font-bold text-slate-800"}`}>
+                        {prob.name}
+                      </span>
+                    </div>
+                    <div className="flex gap-3">
+                      <div className="flex-1">
+                        <div className="flex justify-between text-[9px] font-sans text-slate-500 mb-0.5">
+                          <span>País</span>
+                          <span className="font-mono">{prob.mainProblem}%</span>
+                        </div>
+                        <div className="w-full bg-slate-100 h-1.5 overflow-hidden">
+                          <div className={`h-full ${isCorruption ? "bg-red-700" : "bg-indigo-400"}`} style={{ width: `${(prob.mainProblem / 50) * 100}%` }} />
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex justify-between text-[9px] font-sans text-slate-500 mb-0.5">
+                          <span>Personal</span>
+                          <span className="font-mono">{prob.personalConcern}%</span>
+                        </div>
+                        <div className="w-full bg-slate-100 h-1.5 overflow-hidden">
+                          <div className={`h-full ${isCorruption ? "bg-red-300" : "bg-slate-300"}`} style={{ width: `${(prob.personalConcern / 50) * 100}%` }} />
+                        </div>
+                      </div>
+                    </div>
+                    {isCorruption && (
+                      <div className="mt-1.5 text-[9px] font-sans text-red-600 font-bold">
+                        Brecha: {diff > 0 ? "+" : ""}{diff.toFixed(1)}pp — Se percibe 2.7× más como problema nacional que personal
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        <div className="border-t border-black/10 p-4 bg-[#FAF9F6] flex flex-col sm:flex-row justify-between text-[10px] text-slate-500 font-sans uppercase tracking-wider gap-2">
+          <span>Fuente: CIS Barómetro de Opinión, Julio 2026 (Estudio 3571)</span>
+          <span>Datos publicados 15/07/2026 · N=4.020</span>
+        </div>
       </div>
 
       {/* Two-Column: European CPI + Spain Ranking */}
@@ -644,6 +785,16 @@ export function Dashboard({ cases, onCaseSelect }: DashboardProps) {
               <p>
                 <strong>CCAA:</strong> Distribución calculada a partir de los {cases.length} casos documentados en esta aplicación.
                 No representa la totalidad de la corrupción en España, solo los casos con documentación judicial pública.
+              </p>
+              <p>
+                <strong>CIS (Barómetro de Opinión):</strong> Centro de Investigaciones Sociológicas.
+                Julio 2026 (Estudio 3571, N=4.020). La corrupción: 4º problema del país (17.8%), 11º preocupación personal (6.6%).
+                <a href="https://www.cis.es" target="_blank" rel="noreferrer" className="underline hover:text-slate-900 ml-1">→ Fuente oficial</a>
+              </p>
+              <p>
+                <strong>Consejo de Transparencia y Buen Gobierno:</strong> Autoridad administrativa independiente (Ley 19/2013).
+                Evalúa anualmente el cumplimiento de obligaciones de transparencia de todas las administraciones públicas.
+                <a href={CONSEJO_TRANSPARENCIA.url} target="_blank" rel="noreferrer" className="underline hover:text-slate-900 ml-1">→ Portal oficial</a>
               </p>
               <p className="text-[10px] text-slate-400 italic">
                 Este observatorio NO incluye datos no verificados. Todas las cifras tienen fuente documental identifiable.
