@@ -12,6 +12,7 @@ import { LiveFeed } from "./components/LiveFeed";
 import { AddUpdateForm } from "./components/AddUpdateForm";
 import { AuthModal } from "./components/AuthModal";
 import { ModerationQueue } from "./components/ModerationQueue";
+import { FactQueue } from "./components/FactQueue";
 import { motion, AnimatePresence } from "motion/react";
 import {
   BarChart3,
@@ -228,6 +229,7 @@ export default function App() {
               <div className="space-y-8">
                 {user?.role === "admin" && <AddUpdateForm />}
                 {user?.role === "admin" && <ModerationQueue />}
+                {user?.role === "admin" && <FactQueue />}
                 <LiveFeed onSelectCase={(slug) => { setSelectedCase(cases.find((x) => x.id === String(slug)) || null); setTab("caso"); }} />
               </div>
             )}
