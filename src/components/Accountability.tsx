@@ -114,6 +114,32 @@ export function Accountability() {
           ))}
         </ul>
       </div>
+
+      <div className="bg-amber-50 rounded-xl p-6 border border-amber-200">
+        <h3 className="text-sm font-semibold text-amber-800 mb-2">Metodología del indicador</h3>
+        <ul className="space-y-1 text-xs text-amber-900/80 list-disc pl-4">
+          <li>
+            <strong>Señal de órgano:</strong> el caso tiene al menos un hecho registrado de tipo
+            sentencia, investigación, imputación o juicio (lo que dictan tribunales, fiscalía o
+            cámaras de control).
+          </li>
+          <li>
+            <strong>Consecuencia real:</strong> el campo "consecuencias" del caso contiene una
+            palabra de impacto firme (condena, cárcel, prisión, dimisión, inhabilitación, multa,
+            devolución, fianza, procesado…). Si solo dice "investigación" o "debate", se cuenta como
+            <em> sin consecuencia</em>.
+          </li>
+          <li>
+            <strong>Brecha:</strong> % de casos con señal de órgano que no tienen consecuencia firme
+            documentada. Mide el hueco entre detección institucional y resultado real.
+          </li>
+          <li>
+            <strong>Limitación:</strong> depende de lo que esté registrado en cada caso. Casos muy
+            recientes pueden aún no tener consecuencia reflejada, y la ausencia de palabra firme no
+            descarta acuerdos extrajudiciales o sanciones no documentadas aquí.
+          </li>
+        </ul>
+      </div>
     </div>
   );
 }
