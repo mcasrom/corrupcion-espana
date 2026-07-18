@@ -44,3 +44,25 @@ Consume la API real del backend observatorio-ciudadano (/api/ detras de nginx).
 ## Notas
 - No commitear secretos. El frontend no guarda credenciales, solo usa cookies de session.
 - El usuario queda logueado tras clic en magic-link (backend redirige a APP_URL).
+
+## SESION 2026-07-18 (tarde) - FEATURES FRONTEND
+### Onboarding funnel [HECHO]
+- OnboardingFunnel.tsx: popup 1ª visita (localStorage obs_onboarded), 4 pasos. Render en App.tsx.
+
+### CTBG en Metodologia [HECHO]
+- Methodology.tsx: bloque 'Marco institucional de transparencia' con enlaces reales.
+
+### Organos vs Realidad [HECHO]
+- Nueva tab 'accountability' (icono Scale) + Accountability.tsx: KPIs brecha 78%, barras por partido,
+  detalle de casos, nota metodologica. Backend /api/accountability (en observatorio-ciudadano).
+
+### Assets [HECHO]
+- favicon.ico, favicon-32.png, preview.png en public/. index.html enlaza favicon y og:image.
+
+### Bugfix [HECHO]
+- nginx /api/accountability en no_cache (datos frescos, no cache de CF).
+
+## PENDIENTE
+- 54 fuentes sin URL (enlazar desde panel editor).
+- thisWeek baja a 0 sin hechos nuevos cada 7 dias.
+- Capa 3 con RSS bajo demanda (opcional, hoy solo manual).
