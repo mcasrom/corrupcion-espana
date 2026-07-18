@@ -17,6 +17,11 @@ const TYPE_LABEL: Record<string, string> = {
   imputacion: "Imputación",
   archivo: "Archivo",
   noticia: "Noticia",
+  nombramiento: "Nombramiento",
+  dimision: "Dimisión",
+  "posicion-gobierno": "Posición de gobierno",
+  investigacion: "Investigación",
+  presupuesto: "Presupuesto",
 };
 
 export function LiveFeed({ onSelectCase }: { onSelectCase?: (slug: string) => void }) {

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { CorruptionCase } from "../types";
+import { ImpactPanel } from "./ImpactPanel";
 import { calculateKPIs, formatCurrency, getStatusColor, getStatusTextColor, groupCasesByParty, groupByCCAA, groupByPeriodTimeline } from "../utils/calculators";
 import {
   CPI_2024,
@@ -240,6 +241,9 @@ export function Dashboard({ cases, onCaseSelect }: DashboardProps) {
           </p>
         </motion.div>
       </div>
+
+      {/* Impacto en el Poder */}
+      <ImpactPanel />
 
       {/* CIS Barómetro Panel */}
       <div className="editorial-card overflow-hidden">

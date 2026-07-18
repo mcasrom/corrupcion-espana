@@ -5,10 +5,11 @@ interface CaseOption {
   name: string;
 }
 
-const TYPES = ["hecho", "sentencia", "imputacion", "archivo", "noticia"];
+const TYPES = ["hecho", "nombramiento", "dimision", "posicion-gobierno", "sentencia", "investigacion", "presupuesto", "imputacion", "archivo", "noticia"];
 const TYPE_LABEL: Record<string, string> = {
-  hecho: "Hecho", sentencia: "Sentencia", imputacion: "Imputación",
-  archivo: "Archivo", noticia: "Noticia",
+  hecho: "Hecho", nombramiento: "Nombramiento", dimision: "Dimisión", "posicion-gobierno": "Posición de gobierno",
+  sentencia: "Sentencia", investigacion: "Investigación", presupuesto: "Presupuesto",
+  imputacion: "Imputación", archivo: "Archivo", noticia: "Noticia",
 };
 
 export function AddUpdateForm({ onAdded }: { onAdded?: () => void }) {
@@ -44,8 +45,9 @@ export function AddUpdateForm({ onAdded }: { onAdded?: () => void }) {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Error");
-      setMsg({ ok: true, text: "Hecho publicado." });
-      setDescription(""); setSourceUrl("");
+      const suggested = data.suggestedByAI ? " (Groq sugirió: " + TYPE_LABEL[data.type] + ")" : "";
+      setMsg({ ok: true, text: "Hecho publicado." + suggested });
+      setDescription(""); setSourceUrl(""); setType(data.type || "hecho");
       onAdded?.();
     } catch (e: any) {
       setMsg({ ok: false, text: e.message });
