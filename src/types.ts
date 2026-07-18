@@ -29,6 +29,7 @@ export interface CaseSource {
 
 export interface CorruptionCase {
   id: string;
+  slug?: string;
   name: string;
   year: number;
   period: string;

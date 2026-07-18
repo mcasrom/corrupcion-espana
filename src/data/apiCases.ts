@@ -33,6 +33,7 @@ export async function fetchCases(): Promise<CorruptionCase[]> {
   const rows: RawCase[] = data.cases || [];
   return rows.map((c) => ({
     id: String(c.id),
+    slug: c.slug || String(c.id),
     name: c.name,
     year: c.year,
     period: c.period || String(c.year),

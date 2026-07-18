@@ -1,12 +1,14 @@
 import { CorruptionCase } from "../types";
 import { getStatusColor, getStatusTextColor } from "../utils/calculators";
+import { CaseComments } from "./CaseComments";
 
 interface CaseDetailProps {
   caseItem: CorruptionCase;
   onBack: () => void;
+  user: { email: string; role: string } | null;
 }
 
-export function CaseDetail({ caseItem, onBack }: CaseDetailProps) {
+export function CaseDetail({ caseItem, onBack, user }: CaseDetailProps) {
   return (
     <div className="space-y-6">
       <button
@@ -105,6 +107,8 @@ export function CaseDetail({ caseItem, onBack }: CaseDetailProps) {
           ))}
         </div>
       </div>
+
+      <CaseComments slug={caseItem.slug || ""} user={user} />
     </div>
   );
 }

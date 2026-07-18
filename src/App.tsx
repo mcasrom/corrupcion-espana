@@ -10,6 +10,7 @@ import { Methodology } from "./components/Methodology";
 import { LiveFeed } from "./components/LiveFeed";
 import { AddUpdateForm } from "./components/AddUpdateForm";
 import { AuthModal } from "./components/AuthModal";
+import { ModerationQueue } from "./components/ModerationQueue";
 import { motion, AnimatePresence } from "motion/react";
 import {
   BarChart3,
@@ -202,6 +203,7 @@ export default function App() {
             {tab === "caso" && selectedCase && (
               <CaseDetail
                 caseItem={selectedCase}
+                user={user}
                 onBack={() => {
                   setSelectedCase(null);
                   setTab("dashboard");
@@ -217,6 +219,7 @@ export default function App() {
             {tab === "vivo" && (
               <div className="space-y-8">
                 {user?.role === "admin" && <AddUpdateForm />}
+                {user?.role === "admin" && <ModerationQueue />}
                 <LiveFeed onSelectCase={(slug) => { setSelectedCase(cases.find((x) => x.id === String(slug)) || null); setTab("caso"); }} />
               </div>
             )}
