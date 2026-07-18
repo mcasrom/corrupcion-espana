@@ -34,10 +34,20 @@ export default function App() {
   const [user, setUser] = useState<{ email: string; role: string } | null>(null);
   const [showAuth, setShowAuth] = useState(false);
 
+  const fetchMe = () => {
+    fetch("/api/auth/me", { credentials: "include" })
+      .then((r) => r.json())
+      .then((d) => { if (d.authenticated) setUser(d.user); else setUser(null); })
+      .catch(() => setUser(null));
+  };
+
   useEffect(() => {
     setCasesLoading(true);
     fetchCases().then((d) => setCases(d)).catch(() => setCases([])).finally(() => setCasesLoading(false));
-    fetch("/api/auth/me", { credentials: "include" }).then((r) => r.json()).then((d) => { console.log("AUTH_ME", JSON.stringify(d)); if (d.authenticated) setUser(d.user); }).catch((e) => console.log("AUTH_ERR", e.message));
+    fetchMe();
+    const onFocus = () => fetchMe();
+    window.addEventListener("focus", onFocus);
+    return () => window.removeEventListener("focus", onFocus);
   }, []);
 
   const handleCaseSelect = (c: CorruptionCase) => {
@@ -102,9 +112,14 @@ export default function App() {
               <span className="opacity-40 mb-0.5">Despliegue</span>
               <span>{cases.length} casos · {cases.reduce((s, c) => s + c.implicatedCount, 0)} implicados</span>
             </div>
-            <button onClick={() => setShowAuth(true)} className="ml-4 px-3 py-2 border border-black/20 rounded text-[10px] uppercase tracking-widest font-bold hover:bg-black hover:text-white transition-colors">
-              {user ? user.email.split("@")[0] : "Acceder"}
-            </button>
+            {user ? (
+              <div className="ml-4 flex items-center gap-2">
+                <span className="text-[10px] uppercase tracking-widest font-bold text-emerald-700">{user.email}</span>
+                <button onClick={async () => { await fetch("/api/auth/logout", { method: "POST", credentials: "include" }); setUser(null); }} className="px-3 py-2 border border-black/20 rounded text-[10px] uppercase tracking-widest font-bold hover:bg-black hover:text-white transition-colors">Salir</button>
+              </div>
+            ) : (
+              <button onClick={() => setShowAuth(true)} className="ml-4 px-3 py-2 border border-black/20 rounded text-[10px] uppercase tracking-widest font-bold hover:bg-black hover:text-white transition-colors">Acceder</button>
+            )}
           </div>
         </div>
       </header>
@@ -229,6 +244,7 @@ export default function App() {
           </div>
         </div>
       </footer>
+      {showAuth && <AuthModal onClose={() => setShowAuth(false)} />}
     </div>
   );
 }

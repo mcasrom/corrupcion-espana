@@ -32,7 +32,15 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
           Acceder al Observatorio
         </h3>
         {status === "sent" ? (
-          <p className="text-sm font-sans text-emerald-700">{msg}</p>
+          <div>
+            <p className="text-sm font-sans text-emerald-700">{msg}</p>
+            <button
+              onClick={() => { onClose(); window.location.reload(); }}
+              className="mt-3 w-full px-4 py-2 bg-black hover:bg-slate-800 rounded text-white text-sm font-bold font-sans"
+            >
+              Ya accedí · Actualizar sesión
+            </button>
+          </div>
         ) : (
           <>
             <input
