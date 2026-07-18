@@ -32,7 +32,7 @@ export default function App() {
   const [cases, setCases] = useState<CorruptionCase[]>([]);
   const [casesLoading, setCasesLoading] = useState(true);
   const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState<{ email: string; role: string } | null>(null);
+  const [user, setUser] = useState<{ email: string; role: string; badge?: string } | null>(null);
   const [showAuth, setShowAuth] = useState(false);
 
   const fetchMe = () => {
@@ -115,7 +115,12 @@ export default function App() {
             </div>
             {user ? (
               <div className="ml-4 flex items-center gap-2">
-                <span className="text-[10px] uppercase tracking-widest font-bold text-emerald-700">{user.email}</span>
+                <div className="flex flex-col items-end">
+                  <span className="text-[10px] uppercase tracking-widest font-bold text-emerald-700">{user.email}</span>
+                  {user.badge && (
+                    <span className="text-[9px] uppercase tracking-wider bg-red-700 text-white px-1.5 py-0.5 rounded mt-0.5">{user.badge}</span>
+                  )}
+                </div>
                 <button onClick={async () => { await fetch("/api/auth/logout", { method: "POST", credentials: "include" }); setUser(null); }} className="px-3 py-2 border border-black/20 rounded text-[10px] uppercase tracking-widest font-bold hover:bg-black hover:text-white transition-colors">Salir</button>
               </div>
             ) : (

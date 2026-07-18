@@ -1,6 +1,7 @@
 import { CorruptionCase } from "../types";
 import { getStatusColor, getStatusTextColor } from "../utils/calculators";
 import { CaseComments } from "./CaseComments";
+import { ShareButtons } from "./ShareButtons";
 
 interface CaseDetailProps {
   caseItem: CorruptionCase;
@@ -109,6 +110,11 @@ export function CaseDetail({ caseItem, onBack, user }: CaseDetailProps) {
       </div>
 
       <CaseComments slug={caseItem.slug || ""} user={user} />
+
+      <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+        <h2 className="text-lg font-semibold text-white mb-3">Compartir este caso</h2>
+        <ShareButtons url={`/caso/${caseItem.slug || ""}`} title={caseItem.name} />
+      </div>
     </div>
   );
 }

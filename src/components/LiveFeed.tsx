@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { ShareButtons } from "./ShareButtons";
 
 interface Update {
   id: number;
@@ -74,14 +75,17 @@ export function LiveFeed({ onSelectCase }: { onSelectCase?: (slug: string) => vo
               </span>
               <time className="text-xs text-slate-500 font-mono">{u.date}</time>
             </div>
-            <p className="text-sm text-slate-800 font-serif leading-relaxed">{u.description}</p>
-            <p className="text-xs mt-1 font-sans">
-              <button
-                onClick={() => onSelectCase?.(u.slug)}
-                className="text-red-700 hover:underline font-bold"
-              >
-                {u.case_name}
-              </button>
+             <p className="text-sm text-slate-800 font-serif leading-relaxed">{u.description}</p>
+             <div className="mt-2">
+               <ShareButtons url={`/caso/${u.slug}`} title={`${u.case_name}: ${u.description.slice(0, 80)}`} />
+             </div>
+             <p className="text-xs mt-2 font-sans">
+               <button
+                 onClick={() => onSelectCase?.(u.slug)}
+                 className="text-red-700 hover:underline font-bold"
+               >
+                 {u.case_name}
+               </button>
               {u.source_url && (
                 <>
                   {" · "}
