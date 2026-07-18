@@ -25,6 +25,7 @@ interface RawCase {
   sources: string[];
   corruption_types: string[];
   implicated_count: number;
+  open_sources?: Array<{ title: string; entity: string; url?: string }>;
 }
 
 export async function fetchCases(): Promise<CorruptionCase[]> {
@@ -47,7 +48,7 @@ export async function fetchCases(): Promise<CorruptionCase[]> {
     consequences: c.consequences || "",
     sources: c.sources || [],
     corruptionTypes: (c.corruption_types || []) as CorruptionCase["corruptionTypes"],
-    openSources: [],
+    openSources: (c.open_sources || []).map((s: any) => ({ title: s.title, entity: s.entity, url: s.url })),
     implicatedCount: Number(c.implicated_count) || 0,
   }));
 }

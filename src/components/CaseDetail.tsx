@@ -101,7 +101,11 @@ export function CaseDetail({ caseItem, onBack, user }: CaseDetailProps) {
             <div key={i} className="flex items-start gap-3">
               <div className="w-2 h-2 rounded-full bg-blue-500 mt-2 flex-shrink-0" />
               <div>
-                <div className="text-sm text-white">{s.title}</div>
+                {s.url ? (
+                  <a href={s.url} target="_blank" rel="noreferrer" className="text-sm text-white hover:underline">{s.title}</a>
+                ) : (
+                  <div className="text-sm text-white">{s.title}</div>
+                )}
                 <div className="text-xs text-gray-500">{s.entity}</div>
               </div>
             </div>
