@@ -62,7 +62,16 @@ Consume la API real del backend observatorio-ciudadano (/api/ detras de nginx).
 ### Bugfix [HECHO]
 - nginx /api/accountability en no_cache (datos frescos, no cache de CF).
 
+### Sprint A1 - Cierre de fuentes (cola + 1 clic) [HECHO]
+- SourceSuggestions.tsx en tab 'En vivo' (solo admin): lista sugerencias de source_suggestions,
+  aprobacion/rechazo en 1 clic. Backend GET /api/admin/source-suggestions + approve/reject.
+- scripts/suggest_sources.py (en observatorio-ciudadano, cron 17 7 * * *): Wikipedia + 5 medios
+  (El Pais, El Diario, RTVE, Publico, ABC) con variantes de query. Valida 200 + palabras clave.
+- Fuentes institucionales (BOE/CENDOJ/TCuentas) probadas: no utilizables sin nº de procedimiento.
+- RESULTADO: 54/67 fuentes con URL real. 13 casos restan sin URL -> curacion manual (partidos
+  menores/personas sin indice en medios). Cola pendiente = 0.
+
 ## PENDIENTE
-- 54 fuentes sin URL (enlazar desde panel editor).
+- 13 fuentes sin URL: curacion manual desde panel editor (no automatizar).
 - thisWeek baja a 0 sin hechos nuevos cada 7 dias.
 - Capa 3 con RSS bajo demanda (opcional, hoy solo manual).
