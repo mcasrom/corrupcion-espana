@@ -48,13 +48,19 @@ export function Dashboard({ cases, onCaseSelect }: DashboardProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedParty, setSelectedParty] = useState("TODOS");
   const [selectedStatus, setSelectedStatus] = useState("TODOS");
+  const [selectedCCAA, setSelectedCCAA] = useState("TODOS");
+  const [selectedPeriod, setSelectedPeriod] = useState("TODOS");
 
   const allParties = ["TODOS", ...Array.from(new Set(cases.flatMap((c) => c.parties)))];
   const allStatuses = ["TODOS", ...Array.from(new Set(cases.map((c) => c.status)))];
+  const allCCAA = ["TODOS", ...Array.from(new Set(cases.flatMap((c) => c.regions)))].sort();
+  const allPeriods = ["TODOS", ...Array.from(new Set(cases.map((c) => c.period)))].sort();
 
   const filteredCases = cases.filter((c) => {
     if (selectedParty !== "TODOS" && !c.parties.includes(selectedParty)) return false;
     if (selectedStatus !== "TODOS" && c.status !== selectedStatus) return false;
+    if (selectedCCAA !== "TODOS" && !c.regions.includes(selectedCCAA)) return false;
+    if (selectedPeriod !== "TODOS" && c.period !== selectedPeriod) return false;
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
       const searchable = [c.name, c.description, ...c.parties, ...c.regions, ...c.keyFigures].join(" ").toLowerCase();
@@ -694,6 +700,24 @@ export function Dashboard({ cases, onCaseSelect }: DashboardProps) {
           >
             {allStatuses.map((s) => (
               <option key={s} value={s}>{s === "TODOS" ? "Todos los estados" : s}</option>
+            ))}
+          </select>
+          <select
+            value={selectedCCAA}
+            onChange={(e) => setSelectedCCAA(e.target.value)}
+            className="text-[11px] font-sans font-bold border border-black/15 bg-white px-3 py-1.5 uppercase tracking-wider cursor-pointer focus:outline-none"
+          >
+            {allCCAA.map((r) => (
+              <option key={r} value={r}>{r === "TODOS" ? "Todas las CCAA" : r}</option>
+            ))}
+          </select>
+          <select
+            value={selectedPeriod}
+            onChange={(e) => setSelectedPeriod(e.target.value)}
+            className="text-[11px] font-sans font-bold border border-black/15 bg-white px-3 py-1.5 uppercase tracking-wider cursor-pointer focus:outline-none"
+          >
+            {allPeriods.map((p) => (
+              <option key={p} value={p}>{p === "TODOS" ? "Todos los periodos" : p}</option>
             ))}
           </select>
         </div>
