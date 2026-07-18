@@ -7,6 +7,7 @@ import { CaseDetail } from "./components/CaseDetail";
 import { ControlMap } from "./components/ControlMap";
 import { OsintTerminal } from "./components/OsintTerminal";
 import { Methodology } from "./components/Methodology";
+import { Analysis } from "./components/Analysis";
 import { LiveFeed } from "./components/LiveFeed";
 import { AddUpdateForm } from "./components/AddUpdateForm";
 import { AuthModal } from "./components/AuthModal";
@@ -24,7 +25,7 @@ import {
   Radio,
 } from "lucide-react";
 
-type Tab = "dashboard" | "cronologia" | "mapa" | "osint" | "metodologia" | "vivo" | "caso";
+type Tab = "dashboard" | "cronologia" | "mapa" | "osint" | "metodologia" | "analisis" | "vivo" | "caso";
 
 export default function App() {
   const [tab, setTab] = useState<Tab>("dashboard");
@@ -79,6 +80,7 @@ export default function App() {
     { id: "mapa", label: "Mapa de Control", icon: Map },
     { id: "osint", label: "Terminal OSINT", icon: Terminal },
     { id: "metodologia", label: "Metodología", icon: BookOpen },
+    { id: "analisis", label: "Análisis", icon: BarChart3 },
     { id: "vivo", label: "En vivo / Hoy", icon: Radio },
   ];
 
@@ -221,6 +223,7 @@ export default function App() {
             {tab === "mapa" && <ControlMap />}
             {tab === "osint" && <OsintTerminal onSearch={handleSearch} loading={loading} />}
             {tab === "metodologia" && <Methodology />}
+            {tab === "analisis" && <Analysis cases={cases} />}
             {tab === "vivo" && (
               <div className="space-y-8">
                 {user?.role === "admin" && <AddUpdateForm />}
