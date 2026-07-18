@@ -14,6 +14,7 @@ import { AuthModal } from "./components/AuthModal";
 import { ModerationQueue } from "./components/ModerationQueue";
 import { FactQueue } from "./components/FactQueue";
 import { OnboardingFunnel } from "./components/OnboardingFunnel";
+import { Accountability } from "./components/Accountability";
 import { motion, AnimatePresence } from "motion/react";
 import {
   BarChart3,
@@ -25,9 +26,10 @@ import {
   ChevronRight,
   Eye,
   Radio,
+  Scale,
 } from "lucide-react";
 
-type Tab = "dashboard" | "cronologia" | "mapa" | "osint" | "metodologia" | "analisis" | "vivo" | "caso";
+type Tab = "dashboard" | "cronologia" | "mapa" | "osint" | "metodologia" | "analisis" | "vivo" | "accountability" | "caso";
 
 export default function App() {
   const [tab, setTab] = useState<Tab>("dashboard");
@@ -95,6 +97,7 @@ export default function App() {
     { id: "osint", label: "Terminal OSINT", icon: Terminal },
     { id: "metodologia", label: "Metodología", icon: BookOpen },
     { id: "analisis", label: "Análisis", icon: BarChart3 },
+    { id: "accountability", label: "Órganos vs Realidad", icon: Scale },
     { id: "vivo", label: "En vivo / Hoy", icon: Radio },
   ];
 
@@ -238,6 +241,7 @@ export default function App() {
             {tab === "osint" && <OsintTerminal onSearch={handleSearch} loading={loading} />}
             {tab === "metodologia" && <Methodology />}
             {tab === "analisis" && <Analysis cases={cases} />}
+            {tab === "accountability" && <Accountability />}
             {tab === "vivo" && (
               <div className="space-y-8">
                 {user?.role === "admin" && <AddUpdateForm />}
