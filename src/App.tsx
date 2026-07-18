@@ -13,6 +13,7 @@ import { AddUpdateForm } from "./components/AddUpdateForm";
 import { AuthModal } from "./components/AuthModal";
 import { ModerationQueue } from "./components/ModerationQueue";
 import { FactQueue } from "./components/FactQueue";
+import { SourceSuggestions } from "./components/SourceSuggestions";
 import { OnboardingFunnel } from "./components/OnboardingFunnel";
 import { Accountability } from "./components/Accountability";
 import { motion, AnimatePresence } from "motion/react";
@@ -247,6 +248,7 @@ export default function App() {
                 {user?.role === "admin" && <AddUpdateForm />}
                 {user?.role === "admin" && <ModerationQueue />}
                 {user?.role === "admin" && <FactQueue />}
+                {user?.role === "admin" && <SourceSuggestions />}
                 <LiveFeed onSelectCase={(slug) => { setSelectedCase(cases.find((x) => x.id === String(slug)) || null); setTab("caso"); }} />
               </div>
             )}
