@@ -13,6 +13,7 @@ import { AddUpdateForm } from "./components/AddUpdateForm";
 import { AuthModal } from "./components/AuthModal";
 import { ModerationQueue } from "./components/ModerationQueue";
 import { FactQueue } from "./components/FactQueue";
+import { OnboardingFunnel } from "./components/OnboardingFunnel";
 import { motion, AnimatePresence } from "motion/react";
 import {
   BarChart3,
@@ -36,6 +37,18 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState<{ email: string; role: string; badge?: string } | null>(null);
   const [showAuth, setShowAuth] = useState(false);
+  const [showOnboarding, setShowOnboarding] = useState(false);
+
+  useEffect(() => {
+    try {
+      if (!localStorage.getItem("obs_onboarded")) setShowOnboarding(true);
+    } catch {}
+  }, []);
+
+  const finishOnboarding = () => {
+    try { localStorage.setItem("obs_onboarded", "1"); } catch {}
+    setShowOnboarding(false);
+  };
 
   const fetchMe = () => {
     fetch("/api/auth/me", { credentials: "include" })
@@ -258,6 +271,15 @@ export default function App() {
         </div>
       </footer>
       {showAuth && <AuthModal onClose={() => setShowAuth(false)} />}
+      {showOnboarding && (
+        <OnboardingFunnel
+          onClose={finishOnboarding}
+          onLogin={() => {
+            finishOnboarding();
+            setShowAuth(true);
+          }}
+        />
+      )}
     </div>
   );
 }
