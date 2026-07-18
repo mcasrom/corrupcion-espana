@@ -38,6 +38,54 @@ export function Methodology() {
       </div>
 
       <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+        <h3 className="text-lg font-semibold text-white mb-4">Marco institucional de transparencia</h3>
+        <p className="text-sm text-gray-400 mb-4">
+          En España, el órgano constitucional encargado de la transparencia es el{" "}
+          <a
+            href="https://www.consejodetransparencia.es"
+            target="_blank"
+            rel="noreferrer"
+            className="text-blue-400 underline"
+          >
+            Consejo de Transparencia y Buen Gobierno (CTBG)
+          </a>
+          , creado por la Ley 19/2013. Garantiza el derecho de acceso a la información pública y
+          promueve la transparencia proactiva, pero no investiga corrupción ni lleva un registro de
+          casos: su mandato es el acceso a la información y el buen gobierno.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <a
+            href="https://www.consejodetransparencia.es"
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center gap-3 p-3 bg-gray-750 rounded-lg hover:bg-gray-700 transition-colors"
+          >
+            <div className="w-2 h-2 rounded-full bg-blue-500" />
+            <div>
+              <div className="text-sm font-medium text-white">Consejo de Transparencia y Buen Gobierno</div>
+              <div className="text-xs text-gray-500">Órgano independiente · recurso de amparo ciudadano</div>
+            </div>
+          </a>
+          <a
+            href="https://transparencia.gob.es"
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center gap-3 p-3 bg-gray-750 rounded-lg hover:bg-gray-700 transition-colors"
+          >
+            <div className="w-2 h-2 rounded-full bg-blue-500" />
+            <div>
+              <div className="text-sm font-medium text-white">Portal de la Transparencia</div>
+              <div className="text-xs text-gray-500">Datos e información pública del sector público</div>
+            </div>
+          </a>
+        </div>
+        <p className="text-xs text-gray-500 mt-4">
+          Este observatorio es una iniciativa ciudadana independiente que complementa —no sustituye—
+          el marco institucional: documenta casos, fuentes y consecuencias políticas con trazabilidad.
+        </p>
+      </div>
+
+      <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
         <h3 className="text-lg font-semibold text-white mb-4">Fuentes de datos</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {[
