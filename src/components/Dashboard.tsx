@@ -74,7 +74,7 @@ export function Dashboard({ cases, onCaseSelect }: DashboardProps) {
       c.parties.forEach((p) => {
         if (!acc[p]) acc[p] = { count: 0, amount: 0 };
         acc[p].count++;
-        acc[p].amount += c.amountEstimated;
+        acc[p].amount += c.amountEstimated / c.parties.length;
       });
       return acc;
     }, {} as Record<string, { count: number; amount: number }>)
@@ -548,7 +548,7 @@ export function Dashboard({ cases, onCaseSelect }: DashboardProps) {
           })}
         </div>
         <div className="border-t border-black/10 pt-3 flex justify-between text-[10px] text-slate-500 font-sans uppercase tracking-wider">
-          <span>*Algunos casos involucran a múltiples partidos</span>
+          <span>*Casos multipartido: importe dividido a partes iguales entre formaciones implicadas</span>
           <span>{partyBreakdown.length} formaciones</span>
         </div>
       </div>
