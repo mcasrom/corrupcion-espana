@@ -32,7 +32,7 @@ export function Analysis({ cases }: { cases: CorruptionCase[] }) {
   const kpis = calculateKPIs(cases);
 
   const byParty = Object.entries(groupCasesByParty(cases))
-    .map(([party, cs]) => ({ party, count: cs.length, amount: cs.reduce((s, c) => s + c.amountEstimated, 0) }))
+    .map(([party, cs]) => ({ party, count: cs.length, amount: cs.reduce((s, c) => s + c.amountEstimated / c.parties.length, 0) }))
     .sort((a, b) => b.amount - a.amount)
     .slice(0, 10);
   const maxParty = Math.max(...byParty.map((x) => x.amount), 1);

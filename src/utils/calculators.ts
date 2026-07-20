@@ -157,7 +157,7 @@ export function groupByCCAA(cases: CorruptionCase[]): CCAAStat[] {
     for (const name of uniq) {
       if (!acc[name]) acc[name] = { name, count: 0, amount: 0, sentenciados: 0, riskLevel: "Bajo" };
       acc[name].count += 1;
-      acc[name].amount += c.amountEstimated || 0;
+      acc[name].amount += (c.amountEstimated || 0) / uniq.length;
       if (c.status === "Sentenciado") acc[name].sentenciados += 1;
     }
   }
